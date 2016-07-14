@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#ft,.left,.right{
+			height: 100px;
+		}
+		#ft{
+			background: yellow;
+		}
+		.left{
+			width: 200px;
+			background: blue;
+		}
+		.right{
+			background: red;
+		}
+
+
+		/*core css style*/
+		#container{
+			display: -webkit-flex; /*Webkit内核的浏览器，必须加上-webkit前缀。*/
+			display: flex;/*
+			注意，设为Flex布局以后，子元素的float、clear和vertical-align属性将失效。*/
+			-webkit-flex-direction: row;
+			flex-direction: row;
+			width: 100%;
+		}
+		.right{
+			flex: 1;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<div class="left">DIV1</div>
+		<div class="right">DIV2</div>
+	</div>
+	<div id="ft">DIV3</div>
+</body>
+</html>
