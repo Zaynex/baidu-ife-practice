@@ -1,0 +1,34 @@
+container,.drag-block{
+    position: relative;
+}
+
+.block{
+    width: 200px;
+    height: 479px;
+    border:1px solid #333;
+    float: left;
+}
+
+.move{
+    width: 200px;
+    height: 59px;
+    background-color: #929BDD;
+    border-bottom: 1px solid #333;
+    position: absolute;
+    text-align: center;
+    cursor: move;
+}
+
+.right-block{
+    margin-left: 300px;
+}
+.clearfix:after {
+    content: "\200B";
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+.clearfix{
+    *zoom: 1;
+}
