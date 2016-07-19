@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			padding: 0;margin: 0;
+		}
+		.main,.sub,.extra{
+			height: 300px;
+		}
+
+		.main{
+			float: left;
+			width: 100%;
+			background: red;
+		}
+		.sub{
+			float: left;
+			width: 190px;
+			margin-left: -100%;
+			background: yellow;
+		}
+		.extra{
+			width: 190px;
+			float: left;
+			margin-left: -190px;
+			background: pink;
+		}
+	.main-wrap{
+			margin-left: 200px;
+			margin-right: 200px;
+			background: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="page">
+		<div id="hd"></div>
+		<div class="main">
+			<div class="main-wrap">我是中间的</div>
+		</div>
+		<div class="sub">我是左边</div>
+		<div class="extra">我是右边</div>
+		<div id="foot"></div>
+	</div>
+</body>
+</html>

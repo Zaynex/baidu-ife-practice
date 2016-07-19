@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.container{
+			border: 10px solid #999;
+			padding: 20px;
+			overflow: hidden;
+		}
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		.left,.main,.right{
+			float: left;	
+		}		
+		.left{
+			width: 198px;
+			border: 1px solid #999;
+			margin-left: -100%;
+		}
+		.right{
+			width: 118px;
+			border: 1px solid #999;
+			margin-left: -120px;	
+			background: pink;
+		}
+
+		.main{
+			width: 100%;
+		}
+		.main-wrap{
+			margin:0 140px 0 220px;
+			background: #ccc;
+		}
+		.left .teamlogo{
+			display: inline-block;
+			width: 80px;
+			height: 80px;
+			padding: 20px;
+		}
+		img{
+			width: 80px;
+			height: 80px;
+		}
+		span{
+			vertical-align: top;
+			display: inline-block;
+			margin: 20px 0;
+		}
+		.main-wrap p{
+			padding: 20px;
+			line-height: 2.0;
+			text-indent: 2em;
+			text-align: left;
+			word-wrap: break-word;
+		}
+		.right ul{
+			list-style: none;
+			font-size: 0;
+			padding: 0 20px;
+			padding-bottom: 20px;
+		}
+		ul img{
+			display: block;
+			/*消除img的间隙BUG*/
+		}
+		ul li{
+			font-size: 16px;
+			padding-top: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="centent">
+			<div class="main"><div class="main-wrap">
+				<p>小知识自然界中有一种昆虫很喜欢吃三叶草(也叫鸡公叶)，这种昆虫在吃食物的时候都是成群结队的，第一个趴在第二个的身上，第二个趴在第三个的身上，由一只昆虫带队去寻找食物，这些昆虫连接起来就像一节一节的火车车箱。管理学家做了一个实验，把这些像火车车箱一样的昆虫连在一起，组成一个圆圈，然后在圆圈中放了它们喜欢吃的三叶草。结果它们爬得精疲力竭也吃不到这些草。这个例子说明在团队中失去目标后，团队成员就不知道上何处去，最后的结果可能是饿死，这个团队存在的价值可能就要打折扣。团队的目标必须跟组织的目标一致，此外还可以把大目标分成小目标具体分到各个团队成员身上，大家合力实现这个共同的目标。同时，目标还应该有效地向大众传播，让团队内外的成员都知道这些目标，有时甚至可以把目标贴在团队成员的办公桌上、会议室里，以此激励所有的人为这个目标去工作。</p>
+				<p>采用双飞翼布局，对于右边使用列表图片，利用给img设定块级元素消除间隙BUG（并且图片也已设定了宽高）</p>
+			</div></div>
+			<div class="left">
+				<div class="teamlogo">
+					<img src="img/task3logo.jpg" alt="">
+				</div>
+				<span>团队名称</span>
+			</div>
+			<div class="right">
+				<ul>
+					<li><img src="img/task3logo.jpg" alt=""></li>
+					<li><img src="img/task3logo.jpg" alt=""></li>
+					<li><img src="img/task3logo.jpg" alt=""></li>
+					<li><img src="img/task3logo.jpg" alt=""></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

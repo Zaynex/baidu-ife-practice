@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		function Person(){
+
+	}
+
+	var  friend = new Person();
+
+	Person.prototype = {
+		constructor:Person,
+		name : "Simon",
+		job : "software Engineer",
+		sayName : function () {
+			alert(this.name);
+		}
+	};
+
+	friend.sayName();  //error
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
