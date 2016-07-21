@@ -30,9 +30,9 @@ function addAqiData() {
  */
 function renderAqiList() {
 	var table = document.getElementById('aqi-table');
-	var items;
+	var items = "";
 	for(var city in aqiData){
-		items = "<tr><td>" + city +"</td><td>" + aqiData[city] + "</td>" + "<td><button data-city='"+city+"'>删除</button></td></tr><br>";
+		items += "<tr><td>" + city +"</td><td>" + aqiData[city] + "</td>" + "<td><button data-city='"+city+"'>删除</button></td></tr><br>";
 	}
 	table.innerHTML = city ? items : "";
 	//输入框错误提示后，防止items输入undefined 
