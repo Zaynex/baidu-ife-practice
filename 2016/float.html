@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+		padding: 0;margin: 0;
+		}
+		.container{
+			background: red;
+			min-height: 50px;
+			overflow: hidden;
+		}
+		.box{
+			background: #8ec63f;
+			height: 300px;
+			float: left;
+			margin: 10px;
+			width: 200px;
+			border: 3px solid blue;
+		}
+		.clearfix:before,.clearfix:after{
+			content: "";
+			display: table;
+		}
+		.clearfix:after{
+			clear: both;
+		}
+		..group {
+  		*zoom: 1;
+		}
+	</style>
+</head>
+<body>
+	<div class="container clearfix">
+		<div class="box"></div>
+		<div class="box"></div>
+		<div class="box"></div>
+	</div>
+</body>
+</html>

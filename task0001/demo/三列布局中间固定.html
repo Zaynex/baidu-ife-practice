@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	html, body { padding: 0; margin: 0 ; overflow: hidden; }
+* { height: 100% }
+
+.container{ padding: 0 100px; background: #CCC; }
+
+.sidebar-container { width: 50%; float: left; }
+.sidebar-inner-l { padding-right: 50px; }
+.sidebar-inner-r { padding-left: 50px; }
+
+.sidebar-l,
+.sidebar-r{ background: #FFF; }
+
+.sidebar-container-main { position: relative; }
+.main { position: absolute; top:0; right: -50px; width: 100px; background: wheat; }
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="sidebar-container sidebar-container-main">
+			  <div class="sidebar-inner-l">
+			      <div class="sidebar-l">
+						PM2.5指数	等级	注意事项
+						0-50
+				  </div>
+			  </div>
+			  <div class="main">
+					PM2.5指数	等级	注意事项
+					0-50
+					1级 优	参加户外活动呼吸清新空气
+					50-100
+					2级 良	可以正常进行室
+			  </div>
+		</div>
+		
+		<div class="sidebar-container">
+		  <div class="sidebar-inner-r">
+		        <div class="sidebar-r">
+					PM2.5指数	等级	注意事项
+					0-50            
+		        </div>
+		  </div>
+  		</div>
+	</div>
+</body>
+</html>

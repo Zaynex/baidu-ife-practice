@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			padding: 0;margin: 0;
+		}
+		#hd,#foot{
+			width: 100%;background: #666;clear: both;height: 30px;
+		}
+		.main,.sub,.extra{
+			height: 300px;
+			float: left;
+		}
+
+		.main{
+			width: 100%;
+			background: red;
+		}
+		.sub{
+			width: 190px;
+			background: yellow;
+			margin-left: -100%;
+		}
+		.extra{
+			width: 190px;
+			background: pink;
+			margin-left: -190px;
+		}
+		#bd{
+			padding-left: 190px;
+			padding-right: 190px;
+		}
+		.sub{
+			position: relative;
+			left: -190px;	
+		}
+		.extra{
+			position: relative;
+			right: -190px;
+		}
+	</style>
+</head>
+<body>
+	<div id="page">
+		<div id="hd">我是头部</div>
+		<div id="bd">
+			<div class="main">我是中间</div>
+			<div class="sub">我是左边</div>
+			<div class="extra">我是右边</div>
+		</div>
+		<div id="foot">我是底部</div>
+	</div>
+</body>
+</html>

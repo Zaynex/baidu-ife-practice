@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		.fa_test{
+			width: 400px;
+			height: 200px;
+			border: 1px solid black;
+			margin: 0 auto;
+		}
+		
+		.test1{
+			margin-left: -100px;
+			margin-right: -100px;
+			background: red;
+			height: 100px;
+			margin-bottom: -100px; /*无效*/
+			 /*margin-top: -100px;不会增加高度，但会上移*/
+		}
+		.container{
+			height: 210px;
+			width: 460px;
+			border: 5px solid blue;
+		}
+		.container ul{
+			list-style: none;
+			height: 210px;
+		}
+		.container li{
+			height: 100px;
+			width: 100px;
+			background: #ec0;
+			display: inline-block;
+			margin-right: 20px;
+			margin-bottom: 10px;
+		}
+
+		.container1{
+			height: 210px;
+			width: 460px;
+			border: 5px solid blue;
+			margin-top: 150px;
+		}
+		.container1 ul{
+			list-style: none;
+			height: 210px;
+			margin-right: -20px;
+		}
+		.container1 li{
+			height: 100px;
+			width: 100px;
+			background: #ec0;
+			float: left;
+			margin-right: 20px;
+			margin-bottom: 10px;
+		}
+		.box{
+			margin-top: 200px;
+		}
+		.box1,.box2,.box3{
+			float: left;
+		}
+		.box1{
+			width: 100px;
+			height: 100px;
+			background: purple;
+		}
+		.box2{
+			width: 100px;
+			height: 100px;
+			background: red;
+		}
+		.box3{
+			width: 100px;
+			height: 100px;
+			background: blue;
+			margin-left: -80px;
+		}
+		.demo{
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			width: 100px;
+			height: 100px;
+			background: red;
+			margin-left: -50px;
+			margin-top: -50px;
+			 transform: translate(-50%,-50%);      
+		}
+	</style>
+</head>
+<body>
+	<div class="demo">
+	</div>
+</body>
+</html>

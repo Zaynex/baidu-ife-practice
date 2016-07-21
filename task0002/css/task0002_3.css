@@ -1,0 +1,55 @@
+*{
+			padding: 0;
+			margin: 0;
+		}
+		#wrap{
+			width:1300px;
+			/* 所有图片的宽度*/
+			height: 200px;
+			margin: 40px auto;
+			position: relative;
+		}
+		#wrap .loop{
+			width: 300px;
+			height: 200px;
+			position: relative;
+			margin: 0 auto;
+			overflow: hidden;
+			
+			/*你希望显示几张图片，width就设置为图片大小*数量*/		
+		}
+		.loop ul {
+			width: 1500px;
+			position: absolute;
+			left: 0;
+			right: 0;
+		}
+		img{
+			width: 300px;
+			height: 200px;
+			border:0;
+		}
+		ul li{
+			list-style: none;
+			float: left;
+			width: 300px;
+			height: 200px;
+
+		}
+		.circle {
+		    position: absolute;
+		    bottom: 4px;
+		    left: 50%;
+		    margin-left: -45px;
+		}
+		.circle a {
+		    display: inline-block;
+		    width: 10px;
+		    height: 10px;
+		    border-radius: 10px;
+		    border: 1px solid #fff;
+		}
+		.active {
+		    background-color: #fff;
+		    cursor: default;
+		}
