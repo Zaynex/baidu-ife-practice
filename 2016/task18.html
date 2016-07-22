@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		input{
+			width: 200px;
+			height: 40px;
+			border-radius: 4px;
+
+		}
+		button{
+			width: 100px;
+			height: 40px;
+			line-height: 40px;
+			border: 0;
+			border-radius: 3px;
+			border: 1px solid #ccc;
+		}
+		ul li{
+			width: 40px;
+			padding: 20px;
+			background: red;
+			margin: 10px;
+			float: left;
+			list-style: none;
+			text-align: center;
+			border: white;
+			font-weight: bolder;
+		}
+	</style>
+	
+</head>
+<body>
+	<input type="text">
+	<button>左侧入</button>
+	<button>右侧入</button>
+	<button>左侧出</button>
+	<button>右侧出</button>
+	<ul>
+		<li>10</li>
+		<li>3</li>
+		<li>7</li>
+		<li>12</li>
+		<li>11</li>
+		<li>30</li>
+	</ul>
+	<script>
+		var oInp = document.getElementsByTagName("input")[0];
+		var oBtn = document.getElementsByTagName("button");
+		var ul = document.getElementsByTagName("ul")[0];
+		oBtn[0].addEventListener("click", leftIn);
+		oBtn[1].addEventListener("click", rightIn);
+		oBtn[2].addEventListener("click", leftOut);
+		oBtn[3].addEventListener("click", rightOut);
+		function leftIn(){
+			if(oInp.value === ''){
+				return;
+			}
+			var li = document.createElement("li");
+			li.innerHTML = oInp.value;
+			ul.insertBefore(li,ul.firstChild);
+		}
+		function rightIn(){
+			if(oInp.value === ''){
+				return;
+			}
+
+			var li = document.createElement("li");
+			li.innerHTML = oInp.value;
+			ul.appendChild(li);
+		}
+		function leftOut(){
+			//ul的子节点是文本节点，所以这里将ul和li之间取消空隙或者判断节点类型是否为元素类型
+			for(var i=0,len = ul.childNodes.length; i<len; i++) {
+				if(ul.childNodes[i].nodeType === 1){
+					var formerFirstChild = ul.removeChild(ul.childNodes[i]);
+					alert(formerFirstChild.innerHTML);
+					formerFirstChild = null;
+					break;
+				}
+			}
+		}
+
+		function rightOut(){
+			for (var i=ul.childNodes.length; i>0; i--) {
+				if(ul.childNodes[i-1].nodeType === 1) {
+					var formerLastChild = ul.removeChild(ul.childNodes[i-1]);
+					alert(formerLastChild.innerHTML);
+					formerFirstChild = null;
+					break;
+				}
+			}
+		}
+	</script>	
+</body>
+</html>

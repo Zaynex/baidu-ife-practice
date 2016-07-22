@@ -142,7 +142,6 @@ function initAqiChartData() {
     var countSum =0, daySum = 0, week=0;
     for (var item in nowCityData) {
       countSum += nowCityData[item];
-      console.log(countSum);
       daySum ++;
       if((new Date(item)).getDay() == 6) {
         week++;
