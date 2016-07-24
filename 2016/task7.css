@@ -3,6 +3,7 @@
 }
 *{
 	padding: 0; margin: 0;
+	font-family:"微软雅黑";
 }
 #head{
 	width: 100%;
@@ -42,7 +43,6 @@ div.nav{
 	display: inline-block;
 	height: 55px;
 	padding:0 20px;
-	font-family: "微软雅黑";
 	font-size: 14px;
 }
 .nav ul>li:nth-child(6){
