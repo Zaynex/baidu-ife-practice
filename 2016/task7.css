@@ -10,6 +10,7 @@
 	background: white;
 	border-bottom: 1px solid #E6E6E6;
 	position: fixed;
+	z-index: 100;
 }
 .logo{
 	margin-left: 60px;
@@ -278,4 +279,294 @@ h4.play_now{
 ._active_box_con p{
 	font-size: 12px;
 	color: #7f7773;
+}
+.new_display{
+	width: 100%;
+	overflow: hidden;
+	background: #fff;
+}
+.new_display .bg{
+	background: url("images/middle-left.jpg") no-repeat 0 0;
+	background-size: cover;
+	height: 566px;
+	width: 68%;
+	text-align: center;
+	float: left;
+	color: white;
+	position: relative;
+}
+.new_display .bg h3{
+	margin-top: 150px;
+	font-size: 60px;
+	font-weight:400;
+	font-family: 'Microsoft YaHei';
+}
+
+.new_display .bg h1{
+	font-size: 160px;
+	line-height: 120px;
+	font-weight:500;
+	margin-bottom: 10px;
+}
+.new_display .bg p{
+	padding: 15px;
+	font-size: 30px;
+}
+
+.new_display_more{
+	float: right;
+	width: 32%;
+	margin: 200px 0 0 0;
+	text-align: center;
+}
+.new_display_more p{
+	width: 300px;
+	text-indent: 2em;
+	text-align: left;
+	margin:0 auto;
+	padding: 20px 0 40px 0;
+}
+.new_display_more span{
+	color:#BE4F48;
+	font-size: 26px;
+}
+.new_display_click{
+	width: 120px;
+	height: 40px;
+}
+.whiteclick{
+	border: 1px solid #BE4F48;
+	color: #BE4F48;
+	background: #fff;
+}
+.whiteclick:hover{
+	cursor: pointer;
+	background-color: #BE4F48;
+	color: #fff;
+}
+.three-angle{
+	border-bottom:40px solid transparent;
+	border-top: 40px solid transparent;
+	border-right: 40px solid white;
+	position: absolute;
+	right: 0;
+	top: 40%;
+}
+.circle {
+margin-top: 20px;
+}
+.circle a {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    border: 1px solid #999;
+}
+.circle .active {
+    background-color: #999;
+    cursor: default;
+}
+.new_centery{
+	width: 100%;
+}
+.centery1,.centery2{
+	width: 34%;
+	height: 500px;
+	float: left;
+	text-align: center;
+}
+.centery1{
+	background: #E84E4C;
+}
+.centery2{
+	background: white;
+}
+.centery1>p,.centery2>p{
+	padding-top: 200px;
+	line-height: 40px;
+	font-size: 22px;
+}
+.centery1>p{
+	color: white;
+}
+.btn1{
+	width: 140px;
+	height: 40px;
+	background: #E84E4C;
+	border: 1px solid white;
+	color: white;
+}
+.btn1:hover{
+	background: white;
+	color: #E84E4C;
+}
+.btn2{
+	width: 140px;
+	height: 40px;
+	background: white;
+}
+.centery3{
+	background: url("images/train.png") no-repeat 0 0;
+	opacity: 0.7;
+	background-size: cover;
+	height: 500px;
+	width: 32%;
+	float: left;
+	position: relative;
+}
+.centery3 .three-angle2{
+	position: absolute;
+	border-bottom:40px solid transparent;
+	border-top: 40px solid transparent;
+	border-left: 40px solid white;
+	top: 50%;
+}
+.campus{
+	clear: both;
+	background: white;
+}
+.campus_box{
+	width: 1000px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+.campus_intro{
+	margin: 0 auto;
+	text-align: center;
+	padding-top: 100px;
+}
+.campus_intro h3{
+	font-size: 22px;
+	font-weight: 500;
+}
+.campus_intro p{
+	width: 600px;
+	height: 100px;
+	margin: 0 auto;
+	color: #999;
+	font-size: 14px;
+	padding-top: 20px;
+}
+.campus_submit_left{
+	padding-left: 20px;
+	width: 30%;
+	height: 500px;
+	float: left;
+}
+.protocol{
+	margin-bottom: 50px;
+}
+.protocol h4{
+	margin-bottom: 20px;
+}
+.protocol p{
+	font-size: 14px;
+	color: #999;
+}
+.protocol span{
+	text-align: right;	
+	float: right;
+	color: #999;
+}
+.campus_submit_right{
+	width: 600px;
+	height: 500px;
+	float: right;
+	margin-left: -20px;	
+}
+.campus_submit_right input{
+	width: 260px;
+	padding: 15px 10px;
+	float: left;
+	border: none;
+	background: #ccc;
+	margin-right: 20px;
+	margin-bottom: 20px;
+}
+#text{
+	width: 560px;
+	height: 100px;
+	resize:none; 
+	border: none;
+	background: #ccc;
+	font-size: 16px;
+	white-space: pre-wrap;
+    word-wrap: break-word;
+    padding: 10px;
+    overflow: hidden;
+	}
+.campus_submit_right .submit{
+	width: 580px;
+	height: 50px;
+	border: none;
+	margin-top: 18px;
+	background:#ccc;
+}
+#foot{
+	width: 100%;
+	background: #33363F;
+	height: 420px;
+	color: white;
+	margin: 0 auto;
+}
+.contactus{
+	width: 720px;
+	margin: 0 auto;
+	text-align: center;
+	padding-top: 100px;
+}
+.contactus p{
+	padding: 50px;
+}
+.contactus .write{
+	width: 500px;
+	height: 50px;
+	padding-left: 10px;
+	border: none;
+	font-size: 15px; /*很奇怪，给他们两个字体改变下间隙就没了 */
+}
+.contactus .submit{
+	height: 50px;
+	width: 100px;
+	border: none;
+	font-size: 14px;
+}
+.contactus ul{
+	display: inline-block;
+	padding: 20px;
+}
+.contactus ul li{
+	display: inline-block;
+	width: 30px;
+	height: 50px;
+	margin-right: 30px;
+	
+}
+li.qq{
+	background: url(images/foot-logo.png) no-repeat 0px 0;
+}
+li.weibo{
+	background: url(images/foot-logo.png) no-repeat -35px 0;
+}
+li.twitter{
+	background: url(images/foot-logo.png) no-repeat -80px 0;
+}
+li.web{
+	background: url(images/foot-logo.png) no-repeat -120px 0;
+}
+.floor{
+	height: 50px;
+	background: #30303A;
+	line-height: 50px;
+}
+.floor span{
+	display: inline-block;
+	width: 200px;
+	text-align: center;
+}
+.floor .totop{
+	float: right;
+}
+.floor .at{
+	float: left;
 }
