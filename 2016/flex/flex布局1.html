@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body,ul{
+			margin: 0;padding: 0;
+		}
+		ul{
+			width: 100%;
+			background: purple;
+		}
+		li{
+			list-style: none;
+		}
+		.flex-container{
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: flex-start;
+		}
+		.flex-container1{
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: flex-end;
+		}		
+		.flex-container2{
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: center;
+		}
+		.flex-container3{
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: space-between;
+		}
+		.flex-container4{
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: space-around;
+		}
+		.flex-item{
+			background: tomato;
+			padding: 5px;
+			width: 400px;
+			height: 150px;
+			margin: 10px;
+			line-height: 150px;
+			color: white;
+			font-weight: bold;
+			font-size: 3em;
+			text-align: center;
+		}
+		h2{
+			font-size: 24px;
+			height: 30px;
+			line-height: 30px;
+			color: purple;
+		}
+	</style>
+</head>
+<body>
+	<h2>Flex-strat</h2>	
+	<ul class="flex-container">
+		<li class="flex-item">1</li>
+		<li class="flex-item">2</li>
+		<li class="flex-item">3</li>
+		
+	</ul>
+	<h2>Flex-end</h2>
+	<ul class="flex-container1">
+		<li class="flex-item">1</li>
+		<li class="flex-item">2</li>
+		<li class="flex-item">3</li>			
+	</ul>
+	<h2>center</h2>
+	<ul class="flex-container2">
+		<li class="flex-item">1</li>
+		<li class="flex-item">2</li>
+		<li class="flex-item">3</li>			
+	</ul>
+	<h2>space-between</h2>
+	<ul class="flex-container3">
+		<li class="flex-item">1</li>
+		<li class="flex-item">2</li>
+		<li class="flex-item">3</li>			
+	</ul>
+	<h2>space-around</h2>
+	<ul class="flex-container4">
+		<li class="flex-item">1</li>
+		<li class="flex-item">2</li>
+		<li class="flex-item">3</li>			
+	</ul>		
+</body>
+</html>
