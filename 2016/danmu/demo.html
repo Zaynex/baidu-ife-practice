@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="demo.css">
+<script language="javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+	<div class="data">
+		<div class="show-mask"></div>
+		<div class="show-data">
+			<!--message show-->
+		</div>
+	</div>
+	<div class="control">
+		<p><input type="text" placeholder="说点什么？" class="val"></p>
+		<p><input type="button" value="发射" class="submit"><input type="reset" value="清屏" class="clear"></p>
+	</div>
+</div>
+<script>
+	$(function(){
+		var subBtn = $(".submit");
+		var showData = $(".show-data");
+		var clearBtn = $(".clear");
+		var sValue = $(".val");
+		var arr = [];
+		//将数据报存到数组
+		subBtn.click(function(){
+			var text = sValue.val();
+			arr.push(text);
+			sValue.val("");
+			moveObj();
+		});
+
+		//响应键盘事件
+		sValue.keypress(function(event) {
+			if(event.keyCode == 13){
+				var text = sValue.val();
+				arr.push(text);
+				sValue.val("");
+				moveObj();
+			}
+		});
+
+		//清屏
+		clearBtn.click(function(){
+			arr = [];
+			sValue.val("");
+		})
+
+		function getRangeColor(){
+			return '#' + (function(h){
+                return new Array(7 - h.length).join("0") + h
+            })((Math.random() * 0x1000000 << 0).toString(16));
+		}
+		
+		function moveObj(){
+			var str = arr.shift();
+			var textObj = $("<div></div>");
+			textObj.text(str);
+			var topMin = $(".show-mask").offset().top; // 显示框距顶部距离
+			var topMax = topMin + $(".show-mask").height(); // 显示框底部距顶部距离
+			var _top = topMax;//每个滚动消息距顶部距离	
+			var _left = $(".show-mask").width();
+			_top = _top*Math.random();
+			if(_top> topMax - 50){
+				_top = _top - 50;
+			}else if(_top < 20){
+				_top = 20;
+			}
+			textObj.css({
+				top: _top,
+				left: _left,
+				color: getRangeColor()
+			});
+			showData.append(textObj);
+			textObj.animate({
+				left: 0  + "px"},
+				10000, "linear",function() {
+				textObj.remove();
+			});
+		}
+		
+	})
+</script>
+</body>
+</html>
