@@ -1,0 +1,23 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+
+#main{
+	position: relative;
+}
+
+.box{
+	/*这里推荐用padding，图片通过offsetHeight加载时会获取包括padding的高度，这样才能精确*/
+	padding: 15px 0 0 15px;
+	float: left;
+}
+.pic{
+	padding: 10px;
+	border: 1px solid #ccc;
+	box-shadow: 0 0 5px #ccc;
+}
+.pic img{
+	width: 165px;
+	height: auto;
+}
