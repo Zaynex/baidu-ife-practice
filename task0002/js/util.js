@@ -26,28 +26,31 @@ function isFunction(fn) {
     return typeof fn == 'function';
 }
 
-
-function cloneObject(src){
-	var str;
-	if(Object.prototype.toString.call(src) === '[Object Array]') {
-		str = [];
-	}else {
-		str = {};
-	}
-	for(var i in src){
-		if(src.hasOwnproperty(i)) {
-			str[i] = typeof src[i] === 'object'? cloneObject(obj[i]) : obj[i];
+// 深复制
+function cloneObj(src){
+	let newObj = Object.prototype.toString.call(src) === '[object Array]' ? [] : {};
+	for(let i in src) {
+		if(src.hasOwnProperty(i)) {
+			newObj[i] = typeof src[i] === 'object' ? cloneObj(src[i]): src[i];
 		}
 	}
-	return str;
+	return newObj;
 }
+// var srcObj = {
+//     a: 1,
+//     b: {
+//         b1: ["hello", "hi"],
+//         b2: "JavaScript"
+//     }
+// };
+// var abObj = srcObj;
+// var tarObj = cloneObj(srcObj);
 
 
 function cloneObject2(src) {
 	var s = JSON.Stringfy(src);
 	var o =JSON.parse(s);
 }
-
 
 
 function uniqArray(arr) {
@@ -80,8 +83,11 @@ function simpleTrim(str) {
 
 function trim(str){
 	return str.replace(/^\s+|\s+$/g,'');
-	//全局匹配，而不是一个就停止
 }
+// var str = '   hi!  ';
+// str = trim(str);
+// console.log(str); // 'hi!'
+
 
 //对数组进行去除空字符串
 function deleteBlank(arr) {
@@ -97,21 +103,46 @@ function deleteBlank(arr) {
 }
 
 
-function each(arr,fn) {
-	for(var i in arr){
-		fn(arr[i], i);
+// 实现一个遍历数组的方法，针对数组中每一个元素执行fn函数，并将数组索引和元素作为参数传递
+// 其中fn函数可以接受两个参数：item和index
+function each(arr, fn){
+	if(fn) {
+		// for in 循环索引容易乱
+		for(var i in arr){
+			fn(arr[i], i)
+		}
 	}
 }
+// var arr = ['java', 'c', 'php', 'html'];
+// function output(item) {
+//     console.log(item)
+// }
+// each(arr, output);  // java, c, php, html
 
 
+// 获取一个对象里面第一层元素的数量，返回一个整数
 function getObjectLength(obj) {
-	return Object.keys(obj);
+	return Object.keys(obj).length;
 }
-
+// var obj = {
+//     a: 1,
+//     b: 2,
+//     c: {
+//         c1: 3,
+//         c2: 4
+//     }
+// };
+// console.log(getObjectLength(obj)); // 3
 
 
 function isEmail (email) {
-	var re = /^(\w+\.)*\w+@[a-z0-9]+\.[a-z]+$/;
+	// * 出现 0 次或多次 
+	// ? 0次或一次
+	// . 任意单个字符串 换行符除外
+	// \d 数字
+	// \w 字母数字字符，还包括下划线
+	// \s 空白字符 包括空格、制表符、换页符、换行符和其他 Unicode 空格
+	var re = /^[a-z]([a-z0-9]*[-_]?[a-z0-9]+)*@([a-z0-9]*[-_]?[a-z0-9]+)+[\.][a-z]{2,3}([\.][a-z]{2})?$/i;
 	return re.test(email);
 }
 
@@ -138,14 +169,16 @@ function hasClass(element, className) {
 }
 
 
-function addClass (element, newClassName) {
-	var oldClassName = element.className;
-	if(!hasClass(element,newClassName)){
-		element.className = oldClassName === ""? newClassName : oldClassName + " " + newClassName;
+function addClass(ele, newCls){
+	if(ele.className === '') {
+		ele.className = newCls;
+	}
+	if(ele.className.indexOf(newCls) > -1) {
+		return
+	}else {
+		ele.className += " " + newCls;
 	}
 }
-
-
 
 function removeClass (element, oldClassName) {
 	var originName = element.className;
