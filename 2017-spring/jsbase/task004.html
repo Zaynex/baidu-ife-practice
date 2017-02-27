@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.btn-right{
+			list-style: none;
+			display: inline-block;
+		}
+		.btn-right li {
+			/*float: left;*/
+			display: inline-block;
+			border: 1px solid black;
+		}
+		.result li{
+			list-style: none;
+			display: inline-block;
+			width: 100px;
+			line-height: 100px;
+			text-align: center;
+			background: red;
+			margin: 0 10px 10px 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="demo">
+		<input type="text" id="input">
+		<ul class="btn-right">
+			<li>左侧入</li>
+			<li>右侧入</li>
+			<li>左侧出</li>
+			<li>右侧出</li>
+		</ul>
+		<ul class="result">
+		</ul>
+	</div>
+	<script>
+		function $(id){
+			return document.querySelector(id);
+		}
+		function handler(e){
+			var inputValue = $("#input").value;
+			if(!inputValue){
+				alert("请输入数字")
+			}else {
+				var e = e || window.event;
+				var result = $(".result");
+				// 为什么target.value不行呢？
+				var newLi = document.createElement("li");
+				newLi.innerHTML = inputValue
+				switch(e.target.innerText) {
+					case "左侧入":
+						// 为什么当前节点为空时，innerHTML 和 innerText的值是不一样的？ 
+						if(!result.innerText) {
+							result.appendChild(newLi)
+						} else {
+							result.insertBefore(newLi, result.childNodes[0])
+						}
+						break;
+					case "右侧入":
+						result.appendChild(newLi);
+						break;
+					case "左侧出":
+						result.childNodes.length ? result.removeChild(result.childNodes[0]) : alert('删除光啦');
+						break;
+					case "右侧出":
+						result.childNodes.length ? result.removeChild(result.childNodes[result.childNodes.length -1]) : alert("删除光啦")
+						break;
+					default:
+						break;
+				}
+			}
+		}
+		$(".btn-right").addEventListener("click", handler, false);
+	</script>
+</body>
+</html>
