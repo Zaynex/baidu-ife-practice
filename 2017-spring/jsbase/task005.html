@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.btn-right, .btn-sort{
+			list-style: none;
+			display: inline-block;
+		}
+		.btn-sort li,.btn-right li {
+			/*float: left;*/
+			display: inline-block;
+			border: 1px solid black;
+		}
+		.result {
+			display: flex;
+			/*flex-direction: column;*/
+			align-items: flex-end;
+		}
+		.result li{
+			list-style: none;
+			width: 20px;
+			text-align: center;
+			background: red;
+			margin: 0 5px 10px 0;
+			font-size: 12px;
+		}
+	</style>
+</head>
+<body>
+	<div id="demo">
+		<input type="text" id="input">
+		<ul class="btn-right">
+			<li>左侧入</li>
+			<li>右侧入</li>
+			<li>左侧出</li>
+			<li>右侧出</li>
+		</ul>
+		<ul class="btn-sort">
+			<li>开始排序</li>
+		</ul>
+		<ul class="result">
+		</div>
+	</div>
+	<script>
+		function $(id){
+			return document.querySelector(id);
+		}
+		var count = [];
+		function handler(e){
+			var inputValue = $("#input").value;
+			if(!inputValue){
+				alert("请输入数字")
+			}else {
+				if(inputValue < 10 || inputValue > 100) {
+					alert('数字要求在10-100之间')
+					return false
+				}
+				count.push(inputValue - "");
+				if(count.length > 60) {
+					alert("输入数字上限为60");
+					return false
+				}
+				var e = e || window.event;
+				var result = $(".result");
+				// 为什么target.value不行呢？
+				var newLi = document.createElement("li");
+				newLi.innerHTML = inputValue
+				newLi.style.lineHeight = newLi.style.height = inputValue + "px";
+
+				switch(e.target.innerText) {
+					case "左侧入":
+						// 为什么当前节点为空时，innerHTML 和 innerText的值是不一样的？ 
+						if(!result.innerText) {
+							result.appendChild(newLi)
+						} else {
+							result.insertBefore(newLi, result.childNodes[0])
+						}
+						break;
+					case "右侧入":
+						result.appendChild(newLi);
+						break;
+					case "左侧出":
+						result.childNodes.length ? result.removeChild(result.childNodes[0]) : alert('删除光啦');
+						break;
+					case "右侧出":
+						result.childNodes.length ? result.removeChild(result.childNodes[result.childNodes.length -1]) : alert("删除光啦")
+						break;
+					default:
+						break;
+				}
+			}
+		}
+		$(".btn-right").addEventListener("click", handler, false);
+	</script>
+</body>
+</html>
