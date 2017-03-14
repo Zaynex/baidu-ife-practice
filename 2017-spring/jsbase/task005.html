@@ -48,6 +48,8 @@
 			return document.querySelector(id);
 		}
 		var count = [];
+		var result = $(".result");
+		var resultChild = result.getElementsByTagName("li");
 		function handler(e){
 			var inputValue = $("#input").value;
 			if(!inputValue){
@@ -57,17 +59,17 @@
 					alert('数字要求在10-100之间')
 					return false
 				}
-				count.push(inputValue - "");
+				count.unshift(inputValue - "");
 				if(count.length > 60) {
 					alert("输入数字上限为60");
 					return false
 				}
 				var e = e || window.event;
-				var result = $(".result");
+				
 				// 为什么target.value不行呢？
 				var newLi = document.createElement("li");
 				newLi.innerHTML = inputValue
-				newLi.style.lineHeight = newLi.style.height = inputValue + "px";
+				newLi.style.height = inputValue + "px";
 
 				switch(e.target.innerText) {
 					case "左侧入":
@@ -92,7 +94,33 @@
 				}
 			}
 		}
+		function bubblesort(){
+			var i = count.length, j;
+			var tempExchangeVal;
+			while(i > 0) {
+				for(var j = 0; j < i -1; j++) {
+					// console.log(count)
+					if(count[j] > count[j+1]) {
+						tempExchangeVal = count[j];
+						count[j] = count[j+1];
+						count[j+1] = tempExchangeVal;
+						setTimeout(render(count), 10)
+						// render();	
+					}
+				}
+				i--;
+			}
+		}
+
+		function render(countfrom){
+			console.log(countfrom);
+			for(var i = 0; i < countfrom.length; i++) {
+				resultChild[i].style.height = countfrom[i] + "px";
+				resultChild[i].style.transition = '1s';
+			}
+		}
 		$(".btn-right").addEventListener("click", handler, false);
+		$(".btn-sort").addEventListener('click', bubblesort, false);
 	</script>
 </body>
 </html>
