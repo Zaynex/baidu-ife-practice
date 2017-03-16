@@ -41,47 +41,70 @@
 			<li>开始排序</li>
 		</ul>
 		<ul class="result">
-		</div>
+		</ul>
 	</div>
 	<script>
 		function $(id){
 			return document.querySelector(id);
 		}
-		var count = [];
+		var count = [], ok = false;
 		var result = $(".result");
 		var resultChild = result.getElementsByTagName("li");
+
+		function check(num){
+			if( typeof (num -"") !== 'number') {
+				alert("请输入数字");
+				return false;
+			}
+			if(num < 10 || num > 100) {
+				alert("请输入10-100的数字")
+				return false;
+			}
+			return 1;
+		}
+
+		function getNodesVal(node) {
+			var allNodes = $(".result").getElementsByTagName("li");
+			var count = [], l = allNodes.length;
+			for(var i = 0; i < l; i++) {
+				count.push(Number(allNodes[i].firstChild.nodeValue));
+			}
+			return count;
+		}
+
+		(function(){
+			var data = [];
+			for(var i = 0; i < 12; i++) {
+				data[i] = Math.round(Math.random() * 90 + 10);
+				var node = document.createElement("li");
+				node.innerHTML = data[i];
+				node.style.height = data[i] + "px";
+				result.appendChild(node);
+			}
+			
+		})()
+
 		function handler(e){
 			var inputValue = $("#input").value;
-			if(!inputValue){
-				alert("请输入数字")
-			}else {
-				if(inputValue < 10 || inputValue > 100) {
-					alert('数字要求在10-100之间')
-					return false
-				}
-				count.unshift(inputValue - "");
-				if(count.length > 60) {
-					alert("输入数字上限为60");
-					return false
-				}
 				var e = e || window.event;
-				
-				// 为什么target.value不行呢？
 				var newLi = document.createElement("li");
 				newLi.innerHTML = inputValue
 				newLi.style.height = inputValue + "px";
 
 				switch(e.target.innerText) {
 					case "左侧入":
-						// 为什么当前节点为空时，innerHTML 和 innerText的值是不一样的？ 
-						if(!result.innerText) {
+						if(!(check(inputValue))) {
+							return false;
+						}else if(!result.innerText){
 							result.appendChild(newLi)
 						} else {
 							result.insertBefore(newLi, result.childNodes[0])
 						}
 						break;
 					case "右侧入":
-						result.appendChild(newLi);
+						if(!(check(inputValue))){
+							result.appendChild(newLi);
+						}
 						break;
 					case "左侧出":
 						result.childNodes.length ? result.removeChild(result.childNodes[0]) : alert('删除光啦');
@@ -92,35 +115,47 @@
 					default:
 						break;
 				}
-			}
 		}
-		function bubblesort(){
-			var i = count.length, j;
+		var timer,newCount = [];
+		function bubblesort(count){
+			var l = count.length, j;
 			var tempExchangeVal;
-			while(i > 0) {
-				for(var j = 0; j < i -1; j++) {
-					// console.log(count)
+			newCount = [];			
+			for(var i = 0; i < l - 1; i++) {
+				for(j = 0; j < l - i -1; j++) {
 					if(count[j] > count[j+1]) {
 						tempExchangeVal = count[j];
 						count[j] = count[j+1];
 						count[j+1] = tempExchangeVal;
-						setTimeout(render(count), 10)
-						// render();	
+						console.log(count);
+						newCount.push(JSON.parse(JSON.stringify(count)));
+						console.log(newCount)
 					}
 				}
-				i--;
 			}
+			timer = setInterval(render, 100);
 		}
 
-		function render(countfrom){
-			console.log(countfrom);
-			for(var i = 0; i < countfrom.length; i++) {
-				resultChild[i].style.height = countfrom[i] + "px";
-				resultChild[i].style.transition = '1s';
+		function render(){
+			var spot = newCount.shift() || [];
+			if(spot.length >0) {
+				while(result.hasChildNodes()) {
+					result.removeChild(result.childNodes[0]);
+				}
+				for(var i = 0; i < spot.length; i++) {
+					var txt = document.createTextNode(spot[i]);
+	                    var item = document.createElement('li');
+	                    item.style.height = spot[i] + "px";
+	                    item.appendChild(txt);
+	                    result.appendChild(item);
+				}
+			}else {
+				clearInterval(timer);
+				ok = true;
 			}
 		}
 		$(".btn-right").addEventListener("click", handler, false);
-		$(".btn-sort").addEventListener('click', bubblesort, false);
+		$(".btn-sort").addEventListener('click', function(){bubblesort(getNodesVal())}, false);
 	</script>
 </body>
 </html>
