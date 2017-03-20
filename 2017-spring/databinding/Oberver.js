@@ -29,6 +29,10 @@ p.convert = function(key, val) {
 			return val
 		},
 		set: function(newVal){
+			// 对于新设置的属性也可以进行getter setter
+			if(typeof newVal === 'object') {
+				new Observer(newVal)
+			}
 			console.log('你读取了' + key);
 			if(newVal === val) return;
 			val = newVal
@@ -46,3 +50,39 @@ let data = {
 	}
 }
 let app = new  Observer(data);
+
+
+
+// function Observer(data){
+// 	this.data = data;
+// 	this.walk(data);
+// }
+
+// var p = Observer.prototype;
+// p.walk = function(obj){
+// 	let val;
+// 	for(let key in obj) {
+// 		if(obj.hasOwnProperty(key)){
+// 			val = obj[key]
+// 		}
+// 		if(!val && typeof val === 'object') {
+// 			new Observer(val);
+// 		}
+// 		this.convert(key, val);
+// 	}
+// }
+
+// p.convert = function(key, val){
+// 	Object.defineProperty(this.data, key, {
+// 		enumerable: true,
+// 		configurable: true,
+// 		set: function(newVal){
+// 			console.log('设置了' + key);
+// 				if(newVal === val) return;
+// 				val = newVal;
+// 		}
+// 		get: function(){
+// 			console.log('访问了' + key);
+// 		}
+// 	})
+// }
