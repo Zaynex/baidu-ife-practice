@@ -1,3 +1,156 @@
+function Observer (data) {
+  //暂不考虑数组
+  this.data = data;
+  this.makeObserver(data);
+}
+Observer.prototype.setterAndGetter = function (key, val) {
+  //此为问题一的要点
+  Object.defineProperty(this.data, key, {
+    enumerable: true,
+    configurable: true,
+    get: function(){
+      console.log('你访问了' + key);
+      return val;
+    },
+    set: function(newVal){
+      if(typeof newVal === 'object') {
+      	new Observer(newVal)
+      }
+      console.log('你设置了' + key);
+      console.log('新的' + key + '=' + newVal);
+      val = newVal;
+    }
+  })
+}
+Observer.prototype.makeObserver = function (obj) {
+  let val;
+  //此为问题二的要点
+  for(let key in obj){
+    if(obj.hasOwnProperty(key)){
+      val = obj[key];
+      //深度遍历
+      if(typeof val === 'object'){
+        new Observer(val);
+      }
+    }
+    this.setterAndGetter(key, val);
+  }
+}
+
+//测试
+let app = new Observer({
+basicInfo: {
+    name: 'liujianhuan',
+    age: 25
+},
+company: 'Qihoo 360',
+address: 'Chaoyang, Beijing'
+})
+
+
+//实现一个事件
+function Event(){
+  this.events = {};
+}
+
+Event.prototype.on = function(attr, callback){
+  if(this.events[attr]){
+    this.events[attr].push(callback);
+  }else{
+    this.events[attr] = [callback];
+  }
+}
+
+Event.prototype.off = function(attr){
+  for(let key in this.events){
+    if(this.events.hasOwnProperty(key) && key === attr){
+      delete this.events[key];
+    }
+  }
+}
+
+Event.prototype.emit = function(attr, ...arg){
+  this.events[attr] && this.events[attr].forEach(function(item){
+    item(...arg);
+  })
+}
+
+
+
+
+
+function Observer (data) {
+  //暂不考虑数组
+  this.data = data;
+  this.makeObserver(data);
+  this.eventsBus = new Event();
+}
+
+Observer.prototype.setterAndGetter = function (key, val) {
+  let _this = this;
+  Object.defineProperty(this.data, key, {
+    enumerable: true,
+    configurable: true,
+    get: function(){
+      console.log('你访问了' + key);
+      return val;
+    },
+    set: function(newVal){
+      console.log('你设置了' + key);
+      console.log('新的' + key + '=' + newVal);
+      //触发$watch函数
+      _this.eventsBus.emit(key, val, newVal);
+      val = newVal;
+      //如果newval是对象的话
+      if(typeof newVal === 'object'){
+        new Observer(val);
+      }
+    }
+  })
+}
+
+Observer.prototype.makeObserver = function (obj) {
+  let val;
+  for(let key in obj){
+    if(obj.hasOwnProperty(key)){
+      val = obj[key];
+      //深度遍历
+      if(typeof val === 'object'){
+        new Observer(val);
+      }
+    }
+    this.setterAndGetter(key, val);
+  }
+}
+
+Observer.prototype.$watch = function(attr, callback){
+  this.eventsBus.on(attr, callback);
+}
+
+let app = new Observer({
+    name: 'liujianhuan',
+    age: 25,
+    company: 'Qihoo 360',
+    address: 'Chaoyang, Beijing'
+})
+
+app.$watch('age', function(oldVal, newVal){
+    console.log(`我的年龄变了，原来是: ${oldVal}岁，现在是：${newVal}岁了`)
+})
+
+app.$watch('age', function(oldVal, newVal){
+    console.log(`我的年龄真的变了诶，竟然年轻了${oldVal - newVal}岁`)
+})
+
+
+
+
+
+
+
+
+
+
 function Observer(data){
 	this.data = data;
 	this.walk(data);
@@ -20,6 +173,7 @@ p.walk = function(obj){
 }
 
 p.convert = function(key, val){
+	var that = this;
 	Object.defineProperty(this.data, key, {
 		enumerable: true,
    		configurable: true,
@@ -55,43 +209,43 @@ let data = {
 }
 let app = new Observer(data)
 app.$watch('age', function(old,newVal){
-	console.log(`我的年龄变了，原来是: ${oldVal}岁，现在是：${newVal}岁了`)
+	console.log(`我的年龄变了，原来是: ${old}岁，现在是：${newVal}岁了`)
 })
+
 
 
 /**
  * 增加事件监听触发回调函数
  */
-
 var Event = (function(){
-	var eventlists = {},
-		trigger,
+	var clientList = {},
 		listen,
+		trigger,
 		remove;
 
-	listen = function(key, callback) {
-		if(!eventlists[key]) {
-			//可能
-			eventlists[key] = [];
+	listen = function(key, fn) {
+		if(!clientList[key]) {
+			clientList[key] = [];
 		}
-		eventlists[key].push(fn);
-	}
+		clientList[key].push(fn);
+	};
+
 
 	trigger = function() {
 		var key = Array.prototype.shift.call(arguments);
-		fns = eventlists[key];
+		fns = clientList[key];
 		if(!fns || fns.length === 0) {
-			return false;
+			return false
 		}
 		for(var i = 0, fn; fn = fns[i++];) {
-			fn.apply(this, arguments)
+			fn.apply(this, arguments);
 		}
-	}
+	};
 
 	remove = function(key, fn){
-		var fns = eventlists[key];
+		var fns = clientList[key];
 		if(!fns) {
-			return false;
+			return false
 		}
 		if(!fn) {
 			fns && (fns.length = 0);
@@ -102,11 +256,11 @@ var Event = (function(){
 				}
 			}
 		}
-	}
+	};
+
 	return {
 		listen: listen,
 		trigger: trigger,
 		remove: remove
 	}
-})();
-
+})()
